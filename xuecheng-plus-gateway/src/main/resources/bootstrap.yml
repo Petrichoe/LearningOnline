@@ -1,20 +1,23 @@
 #微服务配置
 spring:
   application:
-    name: content-service
+    name: gateway
   cloud:
     nacos:
       server-addr: 192.168.101.65:8848
       discovery:
         namespace: dev
         group: xuecheng-plus-project
-      config:   #这里的config是为了对应nacos上的东西的
+      config:
         namespace: dev
         group: xuecheng-plus-project
         file-extension: yaml
         refresh-enabled: true
+        shared-configs:
+          - data-id: logging-${spring.profiles.active}.yaml
+            group: xuecheng-plus-common
+            refresh: true
+
+
   profiles:
     active: dev
-# 日志文件配置路径
-logging:
-  config: classpath:log4j2-dev.xml
