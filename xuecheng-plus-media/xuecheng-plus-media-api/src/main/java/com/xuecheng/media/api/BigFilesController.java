@@ -67,9 +67,7 @@ public class BigFilesController {
                                     @RequestParam("chunkTotal") int chunkTotal) throws Exception {
         Long companyId=1232141425L;
         UploadFileParamsDto uploadFileParamsDto=UploadFileParamsDto.builder().fileType("001002").tags("课程视频").remark("").filename(fileName).build();
-
         RestResponse response = mediaFileService.mergechunks(companyId, fileMd5, chunkTotal, uploadFileParamsDto);
-
         return response;
 
     }
