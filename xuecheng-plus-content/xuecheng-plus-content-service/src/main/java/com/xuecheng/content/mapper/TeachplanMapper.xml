@@ -34,7 +34,7 @@
         <result column="one_parentid"     property="parentid" />
         <result column="one_grade"  property="grade" />
         <result column="one_mediaType"   property="mediaType" />
-        <result column="one_stratTime"   property="stratTime" />
+        <result column="one_stratTime"   property="startTime" />
         <result column="one_endTime"   property="endTime" />
         <result column="one_orderby"   property="orderby" />
         <result column="one_courseId"   property="courseId" />
@@ -46,7 +46,7 @@
             <result column="two_parentid"     property="parentid" />
             <result column="two_grade"  property="grade" />
             <result column="two_mediaType"   property="mediaType" />
-            <result column="two_stratTime"   property="stratTime" />
+            <result column="two_stratTime"   property="startTime" />
             <result column="two_endTime"   property="endTime" />
             <result column="two_orderby"   property="orderby" />
             <result column="two_courseId"   property="courseId" />
