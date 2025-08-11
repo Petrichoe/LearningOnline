@@ -6,3 +6,11 @@ Content-Type: application/json
   "auditStatus": "202002",
   "courseName" : ""
 }
+
+
+### 密码模式获取token
+POST {{gateway_host}}/auth/oauth/token?client_id=XcWebApp&client_secret=XcWebApp&grant_type=password&username=zhangsan&password=123
+
+### 查询课程信息
+GET http://localhost:63010/content/course/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsieHVlY2hlbmctcGx1cyJdLCJ1c2VyX25hbWUiOiJ6aGFuZ3NhbiIsInNjb3BlIjpbImFsbCJdLCJleHAiOjE3NTQ5MjQ2NDgsImF1dGhvcml0aWVzIjpbInAxIl0sImp0aSI6IjE4OTI1YzUxLTc1MzMtNGEyNC05MmZmLTFlMzBkOGRlNDQ0MyIsImNsaWVudF9pZCI6IlhjV2ViQXBwIn0.7V9GtTwlEj0749UDDB1IYy2-qagNtjhEIduo3AW6o1Y
