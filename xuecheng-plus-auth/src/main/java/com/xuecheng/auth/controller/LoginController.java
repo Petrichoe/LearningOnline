@@ -1,13 +1,15 @@
 package com.xuecheng.auth.controller;
 
 import com.xuecheng.ucenter.mapper.XcUserMapper;
+import com.xuecheng.ucenter.model.dto.AuthParamsDto;
+import com.xuecheng.ucenter.model.dto.XcUserExt;
 import com.xuecheng.ucenter.model.po.XcUser;
+import com.xuecheng.ucenter.service.AuthService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author Mr.M
@@ -21,6 +23,15 @@ public class LoginController {
 
     @Autowired
     XcUserMapper userMapper;
+
+    /*@Autowired
+    private AuthServiceDispatcher authServiceDispatcher; // 注入一个专门的分发服务
+
+    @PostMapping("/login")
+    public TokenDto login(@RequestBody AuthParamsDto authParamsDto) {
+        // 调用分发逻辑，完成认证并生成Token
+        return authServiceDispatcher.dispatch(authParamsDto);
+    }*/
 
 
     @RequestMapping("/login-success")
