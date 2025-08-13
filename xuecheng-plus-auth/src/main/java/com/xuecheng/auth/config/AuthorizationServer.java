@@ -17,7 +17,7 @@ import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import javax.annotation.Resource;
 
 /**
- * @description 授权服务器配置
+ * @description 授权服务器配置。
  * @author Mr.M
  * @date 2022/9/26 22:25
  * @version 1.0
@@ -33,13 +33,14 @@ import javax.annotation.Resource;
  private AuthenticationManager authenticationManager;
 
   //客户端详情服务
+  // 1. 定义了谁可以来申请令牌 (客户端信息)
   @Override
   public void configure(ClientDetailsServiceConfigurer clients)
           throws Exception {
         clients.inMemory()// 使用in-memory存储
                 .withClient("XcWebApp")// client_id
-                .secret("XcWebApp")//客户端密钥
-//                .secret(new BCryptPasswordEncoder().encode("XcWebApp"))//客户端密钥
+                //.secret("XcWebApp")//客户端密钥
+               .secret(new BCryptPasswordEncoder().encode("XcWebApp"))//客户端密钥
                 .resourceIds("xuecheng-plus")//资源列表
                 .authorizedGrantTypes("authorization_code", "password","client_credentials","implicit","refresh_token")// 该client允许的授权类型authorization_code,password,refresh_token,implicit,client_credentials
                 .scopes("all")// 允许的授权范围
@@ -51,6 +52,7 @@ import javax.annotation.Resource;
 
 
   //令牌端点的访问配置
+  // 2. 定义了处理令牌申请的端点和流程
   @Override
   public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
    endpoints
