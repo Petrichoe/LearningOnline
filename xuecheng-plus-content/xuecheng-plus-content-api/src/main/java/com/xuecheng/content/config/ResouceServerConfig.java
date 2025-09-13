@@ -1,5 +1,6 @@
 package com.xuecheng.content.config;
 
+import com.xuecheng.content.handler.CustomAccessDeniedHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -38,9 +39,11 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
  public void configure(HttpSecurity http) throws Exception {
   http.csrf().disable()
           .authorizeRequests()
-   //             .antMatchers("/r/**","/course/**").authenticated()//所有/r/**的请求必须认证通过
           .anyRequest().permitAll()
-  ;
+          .and() // 使用 and() 连接配置
+          .exceptionHandling() // 开始异常处理的配置
+          .accessDeniedHandler(new CustomAccessDeniedHandler()); // <-- 核心修改：添加这一行来指定我们自定义的处理器
+
  }
 
  }
