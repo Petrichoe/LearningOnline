@@ -35,7 +35,7 @@ public class PasswordAuthServiceImpl implements AuthService {
  @Override
  public XcUserExt execute(AuthParamsDto authParamsDto) {
 
-  //账号
+  /*//账号
   String username = authParamsDto.getUsername();
 
   //校验验证码
@@ -67,6 +67,36 @@ public class PasswordAuthServiceImpl implements AuthService {
   if(!matches){
    throw new RuntimeException("账号或密码错误");
   }
+  return xcUserExt;*/
+
+  //账号
+  String username = authParamsDto.getUsername();
+
+  //校验验证码
+  String checkcode = authParamsDto.getCheckcode();
+  String checkcodekey = authParamsDto.getCheckcodekey();
+
+  if (StringUtils.isEmpty(checkcode)|| StringUtils.isEmpty(checkcodekey)){
+   throw new RuntimeException("验证码为空");
+  }
+
+  Boolean verify = checkCodeClient.verify(checkcodekey, checkcode);
+  if(verify== null||!verify){
+   throw new RuntimeException("验证码校验失败");
+  }
+
+  // 根据用户名查询用户
+  XcUser user = xcUserMapper.selectOne(new LambdaQueryWrapper<XcUser>().eq(XcUser::getUsername, username));
+  if(user==null){
+   //返回空表示用户不存在
+   throw new RuntimeException("账号不存在");
+  }
+
+  // ---- 不再需要手动校验密码，相关代码已删除 ----
+
+  XcUserExt xcUserExt = new XcUserExt();
+  BeanUtils.copyProperties(user,xcUserExt);
+
   return xcUserExt;
  }
 }
